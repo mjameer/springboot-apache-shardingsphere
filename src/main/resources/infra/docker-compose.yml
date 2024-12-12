@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mysql_master:
+    image: mysql:8
+    container_name: mysql_master
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: college
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    ports:
+      - "3306:3306"
+    networks:
+      - mysql_network
+    volumes:
+      - mysql_master_data:/var/lib/mysql
+
+
+  mysql_slave:
+    image: mysql:8
+    container_name: mysql_slave
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: college
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    ports:
+      - "3307:3306"
+    networks:
+      - mysql_network
+    depends_on:
+      - mysql_master
+    volumes:
+      - mysql_slave_data:/var/lib/mysql
+
+
+networks:
+  mysql_network:
+    driver: bridge
+
+volumes:
+  mysql_master_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/mj/Downloads/docker/mysql_master_data
+      o: bind
+
+  mysql_slave_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/mj/Downloads/docker/mysql_slave_data
+      o: bind

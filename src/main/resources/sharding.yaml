@@ -1,0 +1,68 @@
+dataSources:
+  ds0:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/college?allowPublicKeyRetrieval=true&useSSL=false
+    username: user
+    password: userpassword
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 65
+    minPoolSize: 1
+
+  ds1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3307/college?allowPublicKeyRetrieval=true&useSSL=false
+    username: user
+    password: userpassword
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 65
+    minPoolSize: 1
+
+  ds2:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3307/college?allowPublicKeyRetrieval=true&useSSL=false
+    username: user
+    password: userpassword
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 65
+    minPoolSize: 1
+
+rules:
+  - !SHARDING
+    tables:
+      reviews:
+        actualDataNodes: readwrite_ds.reviews_$->{0..1}
+        tableStrategy:
+          standard:
+            shardingColumn: course_id
+            shardingAlgorithmName: inline
+    shardingAlgorithms:
+      inline:
+        type: INLINE
+        props:
+          algorithm-expression: reviews_$->{course_id % 2}
+          allow-range-query-with-inline-sharding: true
+
+  - !READWRITE_SPLITTING
+    dataSources:
+      readwrite_ds:
+        writeDataSourceName: ds0
+        readDataSourceNames:
+          - ds1
+          - ds2
+        loadBalancerName: readwrite-load-balancer
+    loadBalancers:
+      readwrite-load-balancer:
+        type: ROUND_ROBIN
+
+props:
+  proxy-hint-enabled: true
+  sql-show: true

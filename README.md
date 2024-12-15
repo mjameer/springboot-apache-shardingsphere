@@ -2,9 +2,6 @@
 
 - Open-source distributed database solution including independent products such as `Sharding-JDBC`, `Sharding-Proxy`, and `Sharding-Sidecar`.
 - Provides functionality for distributed transactions and database orchestration.
-
-![Apache ShardingSphere](https://shardingsphere.apache.org/document/current/img/shardingsphere-hybrid.png)
-
 - We will explore `Sharding-JDBC` among the three solutions.
 
 ## Sharding?
@@ -32,7 +29,7 @@
 ## Sharding-JDBC
 
 - Works with JDBC-based implementations like `JPA`, `Hibernate`, `Mybatis`, and `Spring JDBC Template`, or JDBC directly.
-- Supports database connection pool implementations like `DBCP` and `HikariCP`.
+- Supports database connection pool implementations like `DBCP` and `HikariCP` or `DRUID`
 - Compatible with databases like `MySQL`, `Oracle`, `SQLServer`, and `PostgreSQL`.
 - Configurable using `Java`, `YAML`, `Spring XML Config`, and `Spring Boot Starter`.
 - An implementation named `io.shardingsphere` exists, closely resembling Apache's implementation.
@@ -102,6 +99,7 @@ create table ds1.t_order
 	type varchar(255) null comment 'type',
 	gmt_create timestamp default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP comment 'Creation time'
 );
+```
 
 -- https://dev.mysql.com/doc/employee/en/employees-installation.html
 

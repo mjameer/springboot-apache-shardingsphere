@@ -36,8 +36,6 @@
 
 ![image](https://github.com/user-attachments/assets/2065d8c5-189a-4970-a1ea-00f6dcd5fa6e)
 
-![Sharding-JDBC Architecture](https://i.imgur.com/2vmVbYE.png)
-
 - Applications logically view a single table, but it maintains connections to individual databases.
 - A mapping rule for the specified sharding field must be provided. Sharding can be done using algorithms for `=`, `>=`, `<=`, `>`, `<`, `BETWEEN`, and `IN`.
 

@@ -1,6 +1,6 @@
 # Apache sharding-Sphere
 
-<img width="900" height="600" alt="sharding" src="https://github.com/user-attachments/assets/4f31ac25-c9fa-4f05-86e6-4c0d2c8e4216" />
+<img width="566" height="354" alt="image" src="https://github.com/user-attachments/assets/86509fb5-a917-4c2c-9274-268f6e5f428a" />
 
 
 - Open-source distributed database solution including independent products such as `Sharding-JDBC`, `Sharding-Proxy`, and `Sharding-Sidecar`.

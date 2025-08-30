@@ -1,4 +1,7 @@
-# APACHE SHARDING-SPHERE
+# Apache sharding-Sphere
+
+<img width="1536" height="1024" alt="ChatGPT Image Aug 29, 2025, 10_46_40 PM" src="https://github.com/user-attachments/assets/4f31ac25-c9fa-4f05-86e6-4c0d2c8e4216" />
+
 
 - Open-source distributed database solution including independent products such as `Sharding-JDBC`, `Sharding-Proxy`, and `Sharding-Sidecar`.
 - Provides functionality for distributed transactions and database orchestration.
